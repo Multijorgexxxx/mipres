@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-no-prerender": "ng build --no-prerender",
+    "build-prod": "ng build --configuration production",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:mipres-front": "node dist/mipres-front/server/server.mjs"
@@ -16,7 +18,12 @@
       {
         "files": "*.html",
         "options": {
-          "parser": "angular"
+          "outputPath": "dist/mipres-front",
+          "index": "src/index.html",
+          "browser": "src/main.ts",
+          "outputMode": "static",
+          "ssr": false,
+          "prerender": false
         }
       }
     ]
