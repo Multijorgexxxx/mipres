@@ -1,0 +1,254 @@
+.layout-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 260px;
+  background-color: #1e293b; /* Azul oscuro profesional */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar-header {
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* Logo arriba, Texto abajo */
+  align-items: center;
+  gap: 10px;
+  background: #0f172a;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.logo {
+/* SUBIMOS EL TAMAÑO AQUÍ */
+  width: 180px;          /* Prueba con 180px o 200px hasta que te guste */
+  height: auto;          /* Mantiene la proporción original */
+  max-height: 100px;     /* Límite de altura para que no empuje el menú muy abajo */
+  
+  object-fit: contain;   /* Evita que se estire */
+  margin-bottom: 15px;   /* Espacio entre el logo y la palabra 'Presys' */
+  
+  /* Brillo para que resalte en el fondo oscuro */
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+}
+
+.sidebar-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-nav a {
+  display: block;
+  padding: 15px 20px;
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: all 0.3s;
+  border-left: 4px solid transparent;
+}
+
+.sidebar-nav a:hover, .active-link {
+  background: #334155;
+  color: white;
+  border-left: 4px solid #3b82f6;
+}
+
+/* Contenido */
+.main-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8fafc;
+}
+
+.top-navbar {
+  height: 60px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.content-body {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto; /* Solo el contenido tiene scroll */
+}
+.menu-container {
+  width: 250px;
+  height: 100vh;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  overflow-y: auto;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu > li {
+  position: relative;
+}
+
+.menu a {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #ecf0f1;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.menu a:hover {
+  background-color: #34495e;
+}
+
+.menu .active > a {
+  background-color: #3498db;
+  color: white;
+}
+
+.menu .submenu {
+  display: none;
+  background-color: #2c3e50;
+  padding-left: 15px;
+}
+
+.menu .submenu.show {
+  display: block;
+}
+
+.menu .submenu a {
+  padding: 10px 15px;
+  font-size: 0.9em;
+  opacity: 0.9;
+}
+
+.arrow {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.arrow.rotated {
+  transform: rotate(90deg);
+}
+
+i {
+  margin-right: 10px;
+  width: 20px;
+  text-align: center;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2c3e50;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #7f8c8d;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #95a5a6;
+}
+
+/* menu.css */
+.layout-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #2c3e50;
+  height: 100%;
+}
+
+.main-content {
+  flex: 1; /* Ocupa todo el espacio restante */
+  overflow-y: auto; /* Permite scroll solo en el contenido, no en el menú */
+  padding: 20px;
+  background-color: #f4f7f6;
+}
+
+.logout-btn {
+  background: linear-gradient(135deg, #ff4b2b 0%, #ff416c 100%); /* Degradado moderno */
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre el icono y el texto */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transmisión fluida */
+  box-shadow: 0 4px 6px -1px rgba(255, 75, 43, 0.3);
+  outline: none;
+}
+
+/* EFECTO HOVER (Al pasar el mouse) */
+.logout-btn:hover {
+  transform: translateY(-2px); /* Se eleva un poquito */
+  box-shadow: 0 10px 15px -3px rgba(255, 75, 43, 0.4);
+  filter: brightness(1.1); /* Brilla un poco más */
+}
+
+/* EFECTO ACTIVE (Al hacer clic) */
+.logout-btn:active {
+  transform: translateY(0); /* Vuelve a su lugar */
+  box-shadow: 0 2px 4px -1px rgba(255, 75, 43, 0.2);
+}
+
+/* Icono dentro del botón */
+.logout-btn i {
+  font-size: 16px;
+}
+/* Estilo para la lista de hijos */
+.submenu-list {
+  list-style: none;
+  padding-left: 30px; /* Indentación para que se note que son hijos */
+  background: rgba(0, 0, 0, 0.2); /* Fondo un poco más oscuro */
+  margin: 0;
+}
+
+.submenu-list a {
+  font-size: 0.9rem;
+  padding: 10px 15px;
+  color: #bdc3c7;
+}
+
+/* Icono de flecha */
+.arrow-icon {
+  margin-left: auto; /* La manda a la derecha */
+  font-size: 12px;
+  transition: transform 0.3s;
+}
+
+.arrow-icon.rotated {
+  transform: rotate(180deg);
+}
+
+/* Evitar que el link padre se vea azul o con subrayado */
+.nav-link {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}

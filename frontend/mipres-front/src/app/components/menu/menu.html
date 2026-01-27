@@ -1,0 +1,51 @@
+<div class="layout-wrapper">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="presys_logo.png" alt="Logo" class="logo">
+      <h1>Presys</h1>
+    </div>
+    
+    <nav class="sidebar-nav">
+      <ul>
+        <li *ngFor="let item of menuItems" class="menu-item">
+          
+          <a (click)="item.submenus?.length ? toggleSubmenu(item, $event) : null"
+             [routerLink]="item.submenus?.length ? null : ['/home', item.ruta]"
+             routerLinkActive="active-link"
+             class="nav-link">
+            
+            <i class="fas" [ngClass]="item.submenus?.length ? 'fa-folder' : 'fa-chevron-right'"></i> 
+            {{ item.titulo }}
+
+            <i *ngIf="item.submenus?.length" 
+               class="fas fa-chevron-down arrow-icon" 
+               [class.rotated]="item.expandido"></i>
+          </a>
+
+          <ul class="submenu-list" *ngIf="item.submenus?.length && item.expandido">
+            <li *ngFor="let sub of item.submenus">
+              <a [routerLink]="['/home', sub.ruta]" 
+                 routerLinkActive="active-sub">
+                <i class="fas fa-link"></i> {{ sub.titulo }}
+              </a>
+            </li>
+          </ul>
+
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="main-container">
+    <header class="top-navbar">
+      <span>Bienvenido, <strong>{{ username }}</strong></span>
+      <button class="logout-btn" (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i> Salir
+      </button>
+    </header>
+
+    <main class="content-body">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

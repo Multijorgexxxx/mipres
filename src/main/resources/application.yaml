@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: mipres
+
+  sispro:
+    sispro-uri: https://wsmipres.sispro.gov.co/WSSUMMIPRESNOPBS/api/
+    sispro-uri-fac: https://wsmipres.sispro.gov.co/WSFACMIPRESNOPBS/api/
+    sispro-nit: 901555292
+    sispro-token: 1F5DD2B6-E501-4D2D-A0FA-D03B447CA42C
+    sispro-token-fac: 1F5DD2B6-E501-4D2D-A0FA-D03B447CA42C
+  
+  datasource:
+    url: jdbc:mysql://localhost:3306/mipres?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+        format_sql: true
+scheduled:
+  cron: "0 * * * * ?"
