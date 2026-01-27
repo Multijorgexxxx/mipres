@@ -1,1 +1,66 @@
-<p>programar works!</p>
+<div class="view-container">
+  <div class="main-card">
+    
+    <header class="card-header">
+      <div class="title-section">
+        <h2>PROGRAMACIÓN DE DIRECCIONAMIENTOS</h2>
+        <span class="subtitle">Gestión y control de entregas programadas</span>
+      </div>
+
+      <div class="top-actions">
+        <div class="search-group">
+          <select [(ngModel)]="filtroSeleccionado" class="custom-select">
+            <option *ngFor="let col of columnas" [value]="col">{{ col | uppercase }}</option>
+          </select>
+          <div class="search-input-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" [(ngModel)]="searchText" (input)="aplicarFiltro()" placeholder="Buscar registro...">
+          </div>
+        </div>
+
+        <div class="export-group">
+          <button (click)="exportar('xls')" class="btn-exp xls"><i class="fas fa-file-excel"></i> Excel</button>
+          <button (click)="exportar('csv')" class="btn-exp csv"><i class="fas fa-file-csv"></i> CSV</button>
+          <button (click)="exportar('txt')" class="btn-exp txt"><i class="fas fa-file-alt"></i> TXT</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="table-wrapper">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th *ngFor="let col of columnas">{{ col.replaceAll('_', ' ') | uppercase }}</th>
+            <th class="sticky-col">ACCIONES</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of datosPaginados">
+            <td *ngFor="let col of columnas">{{ item[col] }}</td>
+            <td class="sticky-col">
+              <div class="action-buttons">
+                <button class="btn-ico edit"><i class="fas fa-pencil-alt"></i></button>
+                <button class="btn-ico view"><i class="fas fa-eye"></i></button>
+                <button class="btn-ico delete"><i class="fas fa-ban"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer class="card-footer">
+      <div class="pagination-info">
+        Mostrando <b>{{filteredData.length}}</b> de <b>{{data.length}}</b> registros
+      </div>
+      <div class="pagination-controls">
+        <button class="btn-page"><i class="fas fa-angle-double-left"></i></button>
+        <button class="btn-page active">1</button>
+        <button class="btn-page">2</button>
+        <button class="btn-page">3</button>
+        <button class="btn-page"><i class="fas fa-angle-double-right"></i></button>
+      </div>
+    </footer>
+
+  </div>
+</div>

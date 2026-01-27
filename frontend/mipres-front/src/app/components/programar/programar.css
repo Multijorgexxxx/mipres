@@ -1,0 +1,134 @@
+/* Contenedor Principal Centrado */
+.view-container {
+  padding: 25px;
+  height: calc(100vh - 80px); /* Ajusta según el tamaño de tu navbar */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f1f5f9;
+}
+
+.main-card {
+  width: 95%;
+  max-width: 1600px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  max-height: 100%; /* No permite que la tarjeta crezca más que la pantalla */
+}
+
+/* Header de la tarjeta */
+.card-header {
+  padding: 20px 25px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.title-section h2 {
+  margin: 0;
+  color: #1e293b;
+  font-size: 1.4rem;
+}
+
+.subtitle {
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.top-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+/* Tabla con Scroll Interno */
+.table-wrapper {
+  flex: 1;
+  overflow: auto; /* Aquí aparecen los scrollbars */
+  margin: 0 10px;
+  border: 1px solid #e2e8f0;
+}
+
+.styled-table {
+  width: max-content; /* Obliga al scroll horizontal */
+  min-width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.styled-table th {
+  position: sticky;
+  top: 0;
+  background: #f8fafc;
+  color: #475569;
+  font-weight: 600;
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 2px solid #e2e8f0;
+  z-index: 2;
+}
+
+.styled-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #f1f5f9;
+  color: #334155;
+  font-size: 0.85rem;
+}
+
+/* Columnas fijas de acciones */
+.sticky-col {
+  position: sticky;
+  right: 0;
+  background: white;
+  border-left: 2px solid #f1f5f9;
+}
+
+/* Botones de acción minimalistas */
+.action-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-ico {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.edit { background: #dbeafe; color: #2563eb; }
+.view { background: #dcfce7; color: #16a34a; }
+.delete { background: #fee2e2; color: #dc2626; }
+
+/* Paginación */
+.card-footer {
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #e2e8f0;
+}
+
+.btn-page {
+  padding: 8px 12px;
+  margin: 0 3px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-page.active {
+  background: #1e293b;
+  color: white;
+  border-color: #1e293b;
+}
