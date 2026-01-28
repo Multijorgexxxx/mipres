@@ -1,39 +1,33 @@
-/* Contenedor Principal Centrado */
+/* --- 1. Ajustes en Contenedores (Sin cambios en tu lógica) --- */
 .view-container {
-  padding: 25px;
-  height: calc(100vh - 80px); /* Ajusta según el tamaño de tu navbar */
+  padding: 20px;
+  height: 100vh;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   background-color: #f1f5f9;
+  overflow: hidden;
 }
 
 .main-card {
-  width: 95%;
+  width: 100%;
   max-width: 1600px;
+  height: 90vh;
   background: white;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.05);
   display: flex;
   flex-direction: column;
-  max-height: 100%; /* No permite que la tarjeta crezca más que la pantalla */
+  min-width: 0;
+  overflow: hidden;
 }
 
-/* Header de la tarjeta */
+/* --- 2. Header: Alineación de Buscador y Filtro --- */
 .card-header {
   padding: 20px 25px;
   border-bottom: 1px solid #e2e8f0;
-}
-
-.title-section h2 {
-  margin: 0;
-  color: #1e293b;
-  font-size: 1.4rem;
-}
-
-.subtitle {
-  color: #64748b;
-  font-size: 0.9rem;
+  flex-shrink: 0;
 }
 
 .top-actions {
@@ -41,94 +35,247 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
-  flex-wrap: wrap;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
-/* Tabla con Scroll Interno */
+/* Grupo de Búsqueda UNIFICADO */
+.search-group {
+  display: flex;
+  align-items: stretch; /* Estira ambos al mismo alto */
+  flex: 1;
+  max-width: 500px;
+}
+
+.custom-select {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-right: none; /* Une visualmente con el input */
+  border-radius: 8px 0 0 8px;
+  background-color: #f8fafc;
+  font-size: 0.85rem;
+  color: #475569;
+  outline: none;
+  cursor: pointer;
+}
+
+.search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.search-input-wrapper i {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  padding: 10px 12px 10px 35px;
+  border: 1px solid #cbd5e1;
+  border-radius: 0 8px 8px 0; /* Cierra el grupo */
+  font-size: 0.9rem;
+  outline: none;
+  transition: border 0.2s;
+}
+
+.search-input-wrapper input:focus {
+  border-color: #3b82f6;
+  z-index: 2;
+}
+
+/* --- 3. Botones de Exportación Pulidos --- */
+.export-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-exp {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: white;
+  color: #475569;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s;
+}
+
+.btn-exp:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+
+.btn-exp i { font-size: 1rem; }
+.xls i { color: #166534; }
+.csv i { color: #0284c7; }
+.txt i { color: #64748b; }
+
+/* --- 4. Tabla: Contraste y Bordes Reforzados --- */
+
 .table-wrapper {
   flex: 1;
-  overflow: auto; /* Aquí aparecen los scrollbars */
-  margin: 0 10px;
-  border: 1px solid #e2e8f0;
+  overflow: auto;
+  margin: 10px;
+  /* Borde exterior más visible */
+  border: 2px solid #cbd5e1; 
+  border-radius: 8px;
+  background-color: white;
 }
 
 .styled-table {
-  width: max-content; /* Obliga al scroll horizontal */
+  width: max-content;
   min-width: 100%;
   border-collapse: separate;
   border-spacing: 0;
 }
 
+/* Cabeceras: Fondo más fuerte y bordes divisorios marcados */
 .styled-table th {
   position: sticky;
   top: 0;
-  background: #f8fafc;
-  color: #475569;
-  font-weight: 600;
-  padding: 12px 15px;
+  background-color: #e2e8f0; /* Gris más oscuro para que resalte el encabezado */
+  color: #0f172a; 
+  font-weight: 800;
+  padding: 16px 20px;
   text-align: left;
-  border-bottom: 2px solid #e2e8f0;
-  z-index: 2;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  /* Bordes divisorios muy claros */
+  border-bottom: 3px solid #94a3b8; 
+  border-right: 2px solid #cbd5e1; 
+  z-index: 10;
+  white-space: nowrap;
 }
 
+/* Celdas: Bordes verticales y horizontales notorios */
 .styled-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #f1f5f9;
-  color: #334155;
+  padding: 14px 20px;
+  /* Líneas de división más oscuras */
+  border-bottom: 1px solid #cbd5e1; 
+  border-right: 2px solid #cbd5e1; 
+  color: #1e293b;
   font-size: 0.85rem;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 
-/* Columnas fijas de acciones */
+/* --- EFECTO CEBRA (MUY NOTORIO) --- */
+/* Usamos un tono gris-azulado que se diferencie bien del blanco */
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f1f5f9;
+}
+.styled-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+/* --- EFECTO HOVER (ALTO IMPACTO) --- */
+/* Azul claro brillante para que sepa exactamente qué fila toca */
+.styled-table tbody tr:hover td {
+  background-color: #dbeafe !important;
+  transition: background-color 0.1s ease;
+}
+
+/* Quitar el último borde derecho para estética */
+.styled-table th:last-child,
+.styled-table td:last-child {
+  border-right: none;
+}
+
+/* --- Columna de Acciones Fija (Sincronizada con los efectos) --- */
 .sticky-col {
   position: sticky;
   right: 0;
-  background: white;
-  border-left: 2px solid #f1f5f9;
+  z-index: 5;
+  /* Borde izquierdo grueso para separar de los datos */
+  border-left: 3px solid #94a3b8; 
+  box-shadow: -6px 0 10px rgba(0,0,0,0.1);
 }
 
-/* Botones de acción minimalistas */
-.action-buttons {
-  display: flex;
-  gap: 8px;
+/* Asegurar que la columna fija cambie de color con el Cebra y el Hover */
+.styled-table tbody tr:nth-child(even) .sticky-col {
+  background-color: #f1f5f9;
+}
+.styled-table tbody tr:nth-child(odd) .sticky-col {
+  background-color: #ffffff;
+}
+.styled-table tbody tr:hover .sticky-col {
+  background-color: #dbeafe;
 }
 
 .btn-ico {
   width: 32px;
   height: 32px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: none;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.2s;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.edit { background: #dbeafe; color: #2563eb; }
-.view { background: #dcfce7; color: #16a34a; }
-.delete { background: #fee2e2; color: #dc2626; }
+.btn-ico:hover { transform: scale(1.1); }
 
-/* Paginación */
+/* Colores de acción más vivos */
+.edit { background: #eff6ff; color: #2563eb; }
+.edit:hover { background: #2563eb; color: white; }
+
+.view { background: #f0fdf4; color: #16a34a; }
+.view:hover { background: #16a34a; color: white; }
+
+.delete { background: #fef2f2; color: #dc2626; }
+.delete:hover { background: #dc2626; color: white; }
+
+/* --- 5. Paginación Moderna --- */
 .card-footer {
   padding: 15px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 4px;
 }
 
 .btn-page {
-  padding: 8px 12px;
-  margin: 0 3px;
+  min-width: 35px;
+  height: 35px;
+  padding: 0 8px;
   border: 1px solid #e2e8f0;
   background: white;
   border-radius: 6px;
   cursor: pointer;
+  color: #64748b;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-page:hover:not(:disabled) {
+  background: #f1f5f9;
+  color: #1e293b;
 }
 
 .btn-page.active {
   background: #1e293b;
   color: white;
   border-color: #1e293b;
+}
+
+.btn-page:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }

@@ -2,6 +2,8 @@ package com.mipres.service.impl;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.mipres.entity.DireccionamientosPendientesEntrega;
@@ -31,6 +33,16 @@ public class DireccionamientoQueryServiceImpl implements DireccionamientoQuerySe
     @Override
     public List<DireccionamientosPendientesProgramacion> listarPendientesProgramacion() {
         return programacionRepository.findAll();
+    }
+
+    @Override
+    public Page<DireccionamientosPendientesEntrega> listarPendientesEntrega(Pageable pageable) {
+        return entregaRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<DireccionamientosPendientesProgramacion> listarPendientesProgramacion(Pageable pageable) {
+        return programacionRepository.findAll(pageable);
     }
 
 }

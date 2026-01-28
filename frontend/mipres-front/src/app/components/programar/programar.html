@@ -10,14 +10,15 @@
       <div class="top-actions">
         <div class="search-group">
           <select [(ngModel)]="filtroSeleccionado" class="custom-select">
-            <option *ngFor="let col of columnas" [value]="col">{{ col | uppercase }}</option>
+            <option *ngFor="let col of columnas" [value]="col">
+              {{ col.replaceAll('_', ' ') | uppercase }}
+            </option>
           </select>
           <div class="search-input-wrapper">
             <i class="fas fa-search search-icon"></i>
             <input type="text" [(ngModel)]="searchText" (input)="aplicarFiltro()" placeholder="Buscar registro...">
           </div>
         </div>
-
         <div class="export-group">
           <button (click)="exportar('xls')" class="btn-exp xls"><i class="fas fa-file-excel"></i> Excel</button>
           <button (click)="exportar('csv')" class="btn-exp csv"><i class="fas fa-file-csv"></i> CSV</button>
@@ -35,7 +36,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of datosPaginados">
+          <tr *ngFor="let item of datosPaginados; trackBy: trackById">
             <td *ngFor="let col of columnas">{{ item[col] }}</td>
             <td class="sticky-col">
               <div class="action-buttons">
@@ -51,14 +52,14 @@
 
     <footer class="card-footer">
       <div class="pagination-info">
-        Mostrando <b>{{filteredData.length}}</b> de <b>{{data.length}}</b> registros
+        Mostrando <b>{{datosPaginados.length}}</b> de <b>{{totalRegistros}}</b> registros
       </div>
       <div class="pagination-controls">
-        <button class="btn-page"><i class="fas fa-angle-double-left"></i></button>
-        <button class="btn-page active">1</button>
-        <button class="btn-page">2</button>
-        <button class="btn-page">3</button>
-        <button class="btn-page"><i class="fas fa-angle-double-right"></i></button>
+        <button class="btn-page" (click)="cambiarPagina(1)" [disabled]="paginaActual === 1"><i class="fas fa-angle-double-left"></i></button>
+        <button class="btn-page" (click)="cambiarPagina(paginaActual - 1)" [disabled]="paginaActual === 1"><i class="fas fa-angle-left"></i></button>
+        <button class="btn-page active">{{paginaActual}}</button>
+        <button class="btn-page" (click)="cambiarPagina(paginaActual + 1)" [disabled]="paginaActual === totalPaginas"><i class="fas fa-angle-right"></i></button>
+        <button class="btn-page" (click)="cambiarPagina(totalPaginas)" [disabled]="paginaActual === totalPaginas"><i class="fas fa-angle-double-right"></i></button>
       </div>
     </footer>
 
