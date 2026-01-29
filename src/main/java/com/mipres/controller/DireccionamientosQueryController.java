@@ -7,10 +7,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody;
 
 import com.mipres.entity.DireccionamientosPendientesEntrega;
 import com.mipres.entity.DireccionamientosPendientesProgramacion;
+import com.mipres.reporting.ReportingExportService;
 import com.mipres.service.DireccionamientoQueryService;
 
 import lombok.RequiredArgsConstructor;
@@ -21,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class DireccionamientosQueryController {
 
     private final DireccionamientoQueryService queryService;
+    private final ReportingExportService reportingExportService;
 
     @GetMapping("/pendientes-entrega")
     public ResponseEntity<List<DireccionamientosPendientesEntrega>> getPendientesEntrega() {
@@ -56,6 +60,18 @@ public class DireccionamientosQueryController {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(datos);
+    }
+
+    @GetMapping("/pendientes-programacion/export")
+    public ResponseEntity<StreamingResponseBody> exportPendientesProgramacion(
+            @RequestParam(name = "format", defaultValue = "csv") String format) {
+        return reportingExportService.export("pendientes_programacion", format);
+    }
+
+    @GetMapping("/pendientes-entrega/export")
+    public ResponseEntity<StreamingResponseBody> exportPendientesEntrega(
+            @RequestParam(name = "format", defaultValue = "csv") String format) {
+        return reportingExportService.export("pendientes_entrega", format);
     }
 
 }
